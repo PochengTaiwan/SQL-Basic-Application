@@ -7,7 +7,7 @@ CREATE PROCEDURE [dbo].[usp_sys_Records]
 	@_InBox_ActionUNID				uniqueidentifier			, --執行項目任碼
 	@_InBox_ProgramID				nvarchar(60)				, --專案項目代碼
 	@_InBox_Action					nvarchar(400)				, --專案項目執行動作或是行為
-	@_InBox_Msg						nvarchar(Max)				  --專案項目的資料
+	@_InBox_Msg					nvarchar(Max)				  --專案項目的資料
 )
 AS
 		-- ========================= 新增與維護注意事項(必須遵守規定) =============================
