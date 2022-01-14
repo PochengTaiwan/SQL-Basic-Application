@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>XML 應用 - 查詢 TABLE 語法中加上 XML 的查詢</Title>
+      <Author>黃博成</Author>
+      <Description>FOR XML PATH 多筆資料合併為一筆</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>SQL_SSDT</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[SELECT
+    	'其他欄位資訊' ,
+		(
+			SELECT	'欄位資訊'
+			FROM	Table WITH(NOLOCK)
+			WHERE
+					'查詢條件'
+			FOR XML PATH('')
+		) as '導出 XML '
+
+FROM	Table WITH(NOLOCK)]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

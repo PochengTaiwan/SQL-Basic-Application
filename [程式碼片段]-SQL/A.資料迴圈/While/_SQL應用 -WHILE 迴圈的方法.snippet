@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>_SQL應用 -WHILE 迴圈的方法</Title>
+      <Author>黃博成</Author>
+      <Description>WHILE 迴圈的方法</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>暫存資料表名稱</ID>
+          <Type></Type>
+          <ToolTip></ToolTip>
+          <Default>暫存資料表名稱</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[
+
+
+
+-- 定義變數
+DECLARE 
+		@count	int=0	, 
+		@Over	int=10	,
+		@n		int=1	,
+		@m		int=10	,
+		@k		int=1	,
+		@NextID	int=0
+
+-- 開始取得亂數的資料
+WHILE (@count < @Over)
+	BEGIN
+
+
+		SET @count = @count + 1
+	END]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>預設查詢語法 - SELECT Table</Title>
+      <Author>黃博成</Author>
+      <Description>提供基礎的 SELECT</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>TableNAME</ID>
+          <Type></Type>
+          <ToolTip>資料表名稱</ToolTip>
+          <Default>TABLE</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[
+-- ========================= 新增與維護注意事項(必須遵守規定) =============================
+-- 1. 相關注解說明請寫在這裡，以免從 Visual Studio 轉至 SQL 說明內容沒有一起上去
+-- 2. 相關新增與修改請務必註明 新增/維護 的相關人等資訊，以利後續資料表與 ERWIN 更新動作
+-- 3. 請儘可能 FROM 後面加 WITH(NOLOCK) 不要鎖定表格
+-- 4. 轉 JSON 格式 FOR JSON PATH, (輸出 Null)INCLUDE_NULL_VALUES, (排除 [] 格式)WITHOUT_ARRAY_WRAPPER
+-- 5. 欄位不分大小寫 COLLATE Chinese_Taiwan_Stroke_CI_AS
+-- 6. 儘量不要使用 Cursor 
+-- 7. 前後要加 SET NOCOUNT ON; SET NOCOUNT OFF;
+-- ==========================================================================
+
+SELECT TOP 100 * FROM [$TableNAME$] WITH(NOLOCK)]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

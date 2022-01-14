@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>_SQL應用 - 提供資料欄位有 0~N 編號</Title>
+      <Author>黃博成</Author>
+      <Description>資料欄位有 0~N 編號</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>RowsName</ID>
+          <Type></Type>
+          <ToolTip>要確定回應的訊息</ToolTip>
+          <Default>Rows_SNO</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[ROW_NUMBER() OVER(ORDER BY $RowsName$) as RowsPage
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

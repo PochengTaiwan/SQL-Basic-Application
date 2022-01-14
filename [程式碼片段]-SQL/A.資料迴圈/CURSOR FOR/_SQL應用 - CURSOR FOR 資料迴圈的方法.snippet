@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>_SQL應用 - CURSOR FOR 資料迴圈的方法</Title>
+      <Author>黃博成</Author>
+      <Description>CURSOR FOR 資料迴圈</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>暫存資料表名稱</ID>
+          <Type />
+          <ToolTip />
+          <Default>暫存資料表名稱</Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[DECLARE 
+		@_GET_TGCOMUNID					uniqueidentifier			,
+		@_GET_TGCOMMERID				nvarchar(40)				,
+		@_GET_TGCOMTERMINALID			nvarchar(40)				,
+		@_GET_BookingOLE_CompanyNAME	nvarchar(2000)
+
+
+if object_id('tempdb..#$暫存資料表名稱$') IS NOT NULL
+	BEGIN
+		DROP TABLE #$暫存資料表名稱$
+	END
+
+	--建立好暫存的 Table
+	CREATE TABLE #$暫存資料表名稱$ (
+		TGCom_UNID			uniqueidentifier,		--自動累加
+		TGCom_MerID			nvarchar(15),			--特店代碼
+		TGCom_TerminalID	nvarchar(8),			--端未機代碼
+		TGCom_CompanyNAME	nvarchar(1000)			--商家資料
+	)
+
+	--啟用資料指標內容
+	DECLARE _CURSORFOR_001 CURSOR FOR 
+		--將查詢的結果放在資料指標內
+		
+		
+	--打開資料指標的項目
+	OPEN _CURSORFOR_001
+
+		FETCH NEXT FROM _CURSORFOR_001 INTO  --打開此資料指標的部份
+		--填入相關的內容
+		
+		--這裡填寫相關 DECLARE 己宣告的變數
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+				
+			--要執行的語法
+
+
+
+
+			--斷續執行下一筆資料
+			FETCH NEXT FROM _CURSORFOR_001 INTO
+			--填入相關的內容
+
+			--這裡填寫相關 DECLARE 己宣告的變數
+
+		END
+		
+	CLOSE _CURSORFOR_001;
+	DEALLOCATE _CURSORFOR_001;
+
+	SELECT * FROM #$暫存資料表名稱$
+
+
+		]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

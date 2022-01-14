@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>使用 DATEDIFF -以最後日期去找出己超過幾天</Title>
+      <Author>黃博成</Author>
+      <Description>引用 DATEDIFF 是否超過期限</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>最後日期</ID>
+          <Type></Type>
+          <ToolTip></ToolTip>
+          <Default>GETDATE()</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[
+
+
+DECLARE	
+		@_NowDateTime										nvarchar(100)		=CONVERT(varchar(10),CONVERT(datetime,GETDATE(),111),111)+' '+Convert(varchar(8),GETDATE(),108),
+		@_CURSORFOR_Startdate								datetime			=CONVERT(datetime,GETDATE(),120)		,
+		@_CURSORFOR_enddate									datetime			=$最後日期$		,
+		@_ElapsedDateTimeDay								nvarchar(200)		,
+		@_OutBox_ReturnValues								nvarchar(200)		,
+		@_CURSORFOR_SS										int			,
+		@_NEXTDateTime_ss									int			,
+		@_NEXTDateTime_mm									int			,
+		@_NEXTDateTime_mmm									int			,
+		@_NEXTDateTime_hh									int			,
+		@_NEXTDateTime_date									int
+		
+		
+SET @_CURSORFOR_Startdate=CONVERT(datetime ,@_NowDateTime)
+
+SET @_CURSORFOR_SS=DATEDIFF(SS, @_CURSORFOR_enddate,@_CURSORFOR_Startdate)
+
+SET	@_NEXTDateTime_date=@_CURSORFOR_SS/60/60/24
+SET	@_NEXTDateTime_hh=@_CURSORFOR_SS/60/60%24		
+SET	@_NEXTDateTime_ss=@_CURSORFOR_SS%60 
+SET @_NEXTDateTime_mm=@_CURSORFOR_SS/60%60
+		
+Begin Try  
+	SET @_NEXTDateTime_mmm=DATEDIFF(ms, @_CURSORFOR_enddate,@_CURSORFOR_Startdate)
+End Try  
+Begin Catch
+	SET @_NEXTDateTime_mmm=100;
+End Catch
+
+		
+SET	@_ElapsedDateTimeDay = CONVERT(nvarchar(20),@_NEXTDateTime_date) +' 天,'
+SET	@_ElapsedDateTimeDay +=CONVERT(nvarchar(20),@_NEXTDateTime_hh)	 +' 小時,'
+SET	@_ElapsedDateTimeDay +=CONVERT(nvarchar(20),@_NEXTDateTime_mm)	 +' 分,'
+SET	@_ElapsedDateTimeDay +=CONVERT(nvarchar(20),@_NEXTDateTime_ss)	 +' 秒,'
+SET	@_ElapsedDateTimeDay +=CONVERT(nvarchar(20),@_NEXTDateTime_mmm)	 +' 亳秒'
+
+SET	@_OutBox_ReturnValues=@_ElapsedDateTimeDay
+
+
+SELECT @_OutBox_ReturnValues]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>_SQL應用 - Replace 去除特定文字</Title>
+      <Author>黃博成</Author>
+      <Description>去除換行符號</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>SQL_SSDT</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>欄位名稱</ID>
+          <Type></Type>
+          <ToolTip></ToolTip>
+          <Default>NewLiteral</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[
+DECLARE 
+		@_InBox_Rowsinfo			nvarchar(200)=' 資料內容'		,
+		@_OutBox_Values				nvarchar(200)
+
+SET @_OutBox_Values=replace(@_InBox_Rowsinfo,Char(10),'') --Tab
+SET @_OutBox_Values=replace(@_InBox_Rowsinfo,Char(10),'') --換行
+SET @_OutBox_Values=replace(@_InBox_Rowsinfo,Char(10),'') --ENTER]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

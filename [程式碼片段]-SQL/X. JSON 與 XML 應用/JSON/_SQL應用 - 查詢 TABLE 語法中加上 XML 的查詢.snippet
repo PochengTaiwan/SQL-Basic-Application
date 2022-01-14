@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>JSON 應用 - 透過 OPENJSON 來查詢多筆資料</Title>
+      <Author>黃博成</Author>
+      <Description>透過 OPENJSON 來查詢多筆資料</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>SQL_SSDT</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[DECLARE @_InBox_SearchWhere					nvarchar(Max)='[
+	{
+	"UID":"CC1B92A33B704E8DBAF64E18AAC66752",
+	"service":"HexSave",
+	"query":"INSERT",
+	"data":[
+		{
+		"cname":"業務部",
+		"sname":"業務部",
+		"tel":null,
+		"fax":null
+		},
+		{
+		"cname":"EFEF",
+		"sname":"AEFEF",
+		"tel":null,
+		"fax":null
+		}
+	]
+	}
+]'
+
+
+--===========================
+-- 程序使用--宣告系統預設變數
+--===========================
+DECLARE
+		@_InBox_Inside_ProgID								nvarchar(60)		=	'usp_HexSave_DEPT_INSRTUPD'			,	--[預設值] 預存程序名稱
+		@_InBox_Inside_ProgVersion							nvarchar(60)		=	'1.0'								,	--[預設值] 此程序執行版本號
+		@_InBox_Inside_ProgAction							nvarchar(60)		=	'Inquire'							,	--[預設值] 執行的動作為何
+		@_InBox_Inside_ActionGUID							uniqueidentifier	=	newid()								,	--[預設值] 提供此程序的執行代碼
+		@_InBox_Inside_isError								bit					=	0									,	--[預設值] 是否有指定錯誤
+		@_InBox_Inside_isErrorMessage						nvarchar(Max)		=	''									,	--[預設值] 存入錯誤的訊息
+		@_InBox_Inside_NowDateTime							datetime			=	getdate()							,	--[預設值] 現在的日期時間
+		@_InBox_iPageCount									int					=	0									,	--[預設值] 筆數
+--===========================
+-- 取得要查詢的條件
+--===========================
+		@_InBox_QueryWhere_uid								nvarchar(100)		=	JSON_VALUE(@_InBox_SearchWhere,'$[0].uid')		,	--[查詢值] - 
+		@_InBox_QueryWhere_service							nvarchar(100)		=	JSON_VALUE(@_InBox_SearchWhere,'$[0].service')	,	--[查詢值] - 要查詢的項目
+		@_InBox_QueryWhere_query							nvarchar(100)		=	JSON_VALUE(@_InBox_SearchWhere,'$[0].query')	,	--[查詢值] - 取得要查詢的條件是什麼
+--===========================
+-- 回傳用參數
+--===========================
+		@_OutBox_RecordsValues								nvarchar(1000)		=	null								,	--[回傳值] 取得記錄回傳內容
+		@_OutBox_Return_Default								nvarchar(150)		=	'{"success":"{0}","message":"{1}"}'	,	--[預設值] 指定要回傳的結果
+		@_OutBox_Return_JSON								nvarchar(Max)		=	''									,	--[回傳值] 回傳 JSON 資料
+		@_OutBox_Return_WrongReason							nvarchar(2000)		=	''									,	--[回傳值] 取得錯誤的資訊
+		@_OutBox_Return_isOK								bit					=	0										--[回傳值] 指定回傳是否正確								
+		
+--===================記錄此次執行的資訊====================================
+SET @_InBox_Inside_isErrorMessage='[內部程序] - 進入了 '+ @_InBox_Inside_ProgID +' 取得的查詢條件是：'+@_InBox_SearchWhere
+Execute [usp_sys_Records]  @_InBox_Inside_ActionGUID,@_InBox_Inside_ProgID,@_InBox_Inside_ProgAction,@_InBox_Inside_isErrorMessage
+--select * from Hex_sys_ConversionRecored where sysDPR_ActionUNID=@_InBox_Inside_ActionGUID
+--==========================================================================
+
+DECLARE @_QueryList_DEPT									Table
+(
+	[sysMangDept_CNAME]										[nvarchar](40)		NULL	,
+	[sysMangDept_SNAME] 									[nvarchar](20)		NULL	,
+	[sysMangDept_CityTEL]									[nvarchar](20)		NULL	,
+	[sysMangDept_CityFax]									[nvarchar](20)		NULL	
+)
+
+INSERT INTO @_QueryList_DEPT
+SELECT *
+FROM OPENJSON(@_InBox_SearchWhere,'$[0].data[0]')
+WITH 
+(
+	--以下定義表格
+	[sysMangDept_CNAME]			[nvarchar](40)			'$.cname'	,
+	[sysMangDept_SNAME] 		[nvarchar](20)			'$.sname'	,
+	[sysMangDept_CityTEL]		[nvarchar](20)			'$.tel'		,
+	[sysMangDept_CityFax]		[nvarchar](20)			'$.false'	
+)
+
+
+SELECT * FROM @_QueryList_DEPT]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

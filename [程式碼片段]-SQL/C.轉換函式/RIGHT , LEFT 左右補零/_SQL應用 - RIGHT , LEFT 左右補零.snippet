@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>RIGHT , LEFT 左右補零</Title>
+      <Author>黃博成</Author>
+      <Description>常用函式</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>SQL_SSDT</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[Select 
+RIGHT(REPLICATE('0', 8) + CAST('12345' as NVARCHAR), 8) as '左邊補零'
+, LEFT(CAST('12345' as NVARCHAR) + REPLICATE('0', 8), 8) as '右邊補零']]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

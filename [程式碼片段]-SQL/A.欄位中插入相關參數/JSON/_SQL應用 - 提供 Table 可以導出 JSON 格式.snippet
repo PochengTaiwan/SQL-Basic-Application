@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>JSON 應用 - 提供 Table 可以導出 JSON 格式</Title>
+      <Author>黃博成</Author>
+      <Description>導出 JSON 格式</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>RowsName</ID>
+          <Type></Type>
+          <ToolTip>要確定回應的訊息</ToolTip>
+          <Default>Rows_SNO</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[FOR JSON PATH,INCLUDE_NULL_VALUES, root('root 可有可無')]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

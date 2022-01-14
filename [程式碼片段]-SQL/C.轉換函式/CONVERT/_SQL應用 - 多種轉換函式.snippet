@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>多種轉換函式</Title>
+      <Author>黃博成</Author>
+      <Description>多種轉換函式</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL 應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[select CAST('123' as int)   -- 123
+select CONVERT(int, '123')  -- 123
+
+select CAST(123.4 as int)   -- 123
+select CONVERT(int, 123.4)  -- 123 
+
+select CAST('123.4' as float)
+select CONVERT(float, '123.4')
+
+-- Conversion failed when converting the varchar value '123.4' to data type int.
+
+select CAST('123.4' as decimal)  -- 123
+select CONVERT(decimal, '123.4') -- 123 
+
+
+select CAST('123.4' as decimal(9,2))  -- 123.40
+select CONVERT(decimal(9,2), '123.4') -- 123.40
+
+
+declare @Num money
+set @Num = 1234.56
+select CONVERT(varchar(20), @Num, 0)  -- 1234.56
+select CONVERT(varchar(20), @Num, 1)  -- 1,234.56
+select CONVERT(varchar(20), @Num, 2)  -- 1234.5600]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>針對日期 GETDATE() 應用清單</Title>
+      <Author>黃博成</Author>
+      <Description>取得相關以日期與時間為主資訊</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Shortcut>TSQL應用</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="SQL_SSDT" Kind="" Delimiter="$"><![CDATA[SELECT CONVERT(varchar(100), GETDATE(), 1);	--	01/03/17
+SELECT CONVERT(varchar(100), GETDATE(), 2);	--	17.01.03
+SELECT CONVERT(varchar(100), GETDATE(), 3);	--	03/01/17
+SELECT CONVERT(varchar(100), GETDATE(), 4);	--	03.01.17
+SELECT CONVERT(varchar(100), GETDATE(), 5);	--	03-01-17
+SELECT CONVERT(varchar(100), GETDATE(), 6);	--	03 01 17
+SELECT CONVERT(varchar(100), GETDATE(), 7);	--	01 03, 17
+SELECT CONVERT(varchar(100), GETDATE(), 8);	--	09:09:10
+SELECT CONVERT(varchar(100), GETDATE(), 9);	--	01 3 2017 9:09:10:037AM
+SELECT CONVERT(varchar(100), GETDATE(), 10);	--	01-03-17
+SELECT CONVERT(varchar(100), GETDATE(), 11);	--	17/01/03
+SELECT CONVERT(varchar(100), GETDATE(), 12);	--	170103
+SELECT CONVERT(varchar(100), GETDATE(), 13);	--	03 01 2017 09:09:10:037
+SELECT CONVERT(varchar(100), GETDATE(), 14);	--	09:09:10:037
+SELECT CONVERT(varchar(100), GETDATE(), 20);	--	2017-01-03 09:09:10
+SELECT CONVERT(varchar(100), GETDATE(), 21);	--	2017-01-03 09:09:10.037
+SELECT CONVERT(varchar(100), GETDATE(), 22);	--	01/03/17 9:09:10 AM
+SELECT CONVERT(varchar(100), GETDATE(), 23);	--	2017-01-03
+SELECT CONVERT(varchar(100), GETDATE(), 24);	--	09:09:10
+SELECT CONVERT(varchar(100), GETDATE(), 25);	--	2017-01-03 09:09:10.037
+SELECT CONVERT(varchar(100), GETDATE(), 100);	--	01 3 2017 9:09AM
+SELECT CONVERT(varchar(100), GETDATE(), 101);	--	01/03/2017
+SELECT CONVERT(varchar(100), GETDATE(), 102);	--	2017.01.03
+SELECT CONVERT(varchar(100), GETDATE(), 103);	--	03/01/2017
+SELECT CONVERT(varchar(100), GETDATE(), 104);	--	03.01.2017
+SELECT CONVERT(varchar(100), GETDATE(), 105);	--	03-01-2017
+SELECT CONVERT(varchar(100), GETDATE(), 106);	--	03 01 2017
+SELECT CONVERT(varchar(100), GETDATE(), 107);	--	01 03, 2017
+SELECT CONVERT(varchar(100), GETDATE(), 108);	--	09:09:10
+SELECT CONVERT(varchar(100), GETDATE(), 109);	--	01 3 2017 9:09:10:037AM
+SELECT CONVERT(varchar(100), GETDATE(), 110);	--	01-03-2017
+SELECT CONVERT(varchar(100), GETDATE(), 111);	--	2017/01/03
+SELECT CONVERT(varchar(100), GETDATE(), 112);	--	20170103
+SELECT CONVERT(varchar(100), GETDATE(), 113);	--	03 01 2017 09:09:10:037
+SELECT CONVERT(varchar(100), GETDATE(), 114);	--	09:09:10:037
+SELECT CONVERT(varchar(100), GETDATE(), 120);	--	2017-01-03 09:09:10
+SELECT CONVERT(varchar(100), GETDATE(), 121);	--	2017-01-03 09:09:10.037
+SELECT CONVERT(varchar(100), GETDATE(), 126);	--	2017-01-03T09:09:10.037
+SELECT CONVERT(varchar(100), GETDATE(), 130);	--	5 ???? ?????? 1438 9:09:10:037AM
+SELECT CONVERT(varchar(100), GETDATE(), 131);	--	5/04/1438 9:09:10:037AM]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
